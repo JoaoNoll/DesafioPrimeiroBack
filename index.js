@@ -28,6 +28,9 @@ function verifyData(req,res,next){
 
 }
 
+
+
+
 server.get('/',(req,res)=>{
     return res.json({
         result:'Bem-vindo a página de registro!'
@@ -57,15 +60,7 @@ server.post('/users',(req,res)=>{
         return res.json({users});
 });
 
-    server.get('users/:id', (req,res)=> {
-        const {id} = req.params;
-
-        return res.json({
-            result:'Usuário encontrado com sucesso!',
-            user: users[id]
-        });
-    });
-
+    
     server.put('/users/:id',verifyData,(req,res)=>{
         const {email,name,age,phone} = req.body;
         const {id} = req.params;
@@ -85,6 +80,14 @@ server.post('/users',(req,res)=>{
         })
     });
 
+    server.get('/users/:id', (req,res)=> {
+        const {id} = req.params;
+    
+        return res.json({
+            result:'Usuário encontrado com sucesso!',
+            user: users[id]
+        });
+    });
 
 
     server.listen(3000);
